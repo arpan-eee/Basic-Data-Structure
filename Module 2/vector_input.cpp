@@ -1,4 +1,4 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
@@ -18,15 +18,15 @@ int main()
 
     // second type
     int n;
-    cin>>n;
+    cin >> n;
     vector<int> v(n);
-    for(int i=0;i<n;i++)
+    for (int i = 0; i < n; i++)
     {
-        cin>>v[i];
+        cin >> v[i];
     }
-    for(int val: v)
+    for (int val : v)
     {
-        cout<<val<<" ";
+        cout << val << " ";
     }
     return 0;
 }

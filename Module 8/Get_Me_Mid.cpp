@@ -23,36 +23,39 @@ void tail_insert(Node *&head, Node *&tail, int val)
     tail->next = newNode;
     tail = newNode;
 }
-void largest_f(Node *&head, Node *&largest)
+void size_measure(Node *&head, int &size)
 {
+    size = 0;
     Node *tmp = head;
-    largest = head;
     while (tmp != NULL)
     {
-        if (tmp->val > largest->val)
-        {
-            largest = tmp;
-        }
+        size++;
         tmp = tmp->next;
     }
 }
-void smallest_f(Node *&head, Node *&smallest)
+void print_middle(Node *&head, int &size)
 {
-    Node *tmp = head;
-    smallest = head;
-    while (tmp != NULL)
+    if (size == 1)
     {
-        if (tmp->val < smallest->val)
-        {
-            smallest = tmp;
-        }
+        cout << head->val;
+        return;
+    }
+    Node *tmp = head;
+    for (int i = 1; i < size / 2; i++)
+    {
         tmp = tmp->next;
+    }
+    if (size % 2 != 0)
+        cout << tmp->next->val;
+    else
+    {
+        cout << tmp->val << ' ' << tmp->next->val;
     }
 }
 int main()
 {
-    Node *head = NULL, *tail = NULL, *largest, *smallest;
-    int val;
+    Node *head = NULL, *tail = NULL;
+    int val, size = 0;
     while (true)
     {
         cin >> val;
@@ -62,8 +65,16 @@ int main()
         }
         tail_insert(head, tail, val);
     }
-    largest_f(head, largest);
-    smallest_f(head, smallest);
-    cout << largest->val << " " << smallest->val;
+    for (Node *i = head; i->next != NULL; i = i->next)
+    {
+        for (Node *j = i->next; j != NULL; j = j->next)
+        {
+            if (i->val < j->val)
+                swap(i->val, j->val);
+        }
+    }
+    size_measure(head, size);
+    print_middle(head, size);
+
     return 0;
 }

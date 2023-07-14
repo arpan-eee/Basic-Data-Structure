@@ -1,42 +1,33 @@
-#include<bits/stdc++.h>
+#include <bits/stdc++.h>
 using namespace std;
 int main()
 {
     string s;
     int n;
-    char c;
-    stack<char> st1,st2;
 
     cin >> n;
-    while (n--)
+    for(int i=0;i<n;i++)
     {
+        stack<char> st1, st2;
         cin >> s;
         for (char c : s)
         {
-            if (c=='A')
+            if (c == 'A')
             {
                 st1.push(c);
             }
-            else if (c=='B')
+            else if (c == 'B')
             {
                 st2.push(c);
             }
         }
-        if (st1.size()==st2.size())
-        {
-            cout << "YES" << endl;
-        }
-        else
+        if (st1.size() != st2.size())
         {
             cout << "NO" << endl;
         }
-        while(!st1.empty())
+        else
         {
-            st1.pop();
-        }
-        while(!st2.empty())
-        {
-            st2.pop();
+            cout << "YES" << endl;
         }
     }
 

@@ -2,13 +2,12 @@
 using namespace std;
 int main()
 {
-    string s;
     int n;
-    char c;
 
     cin >> n;
     while (n--)
     {
+        string s;
         stack<char> vstr;
         cin >> s;
         for (char c : s)
@@ -34,7 +33,6 @@ int main()
         {
             cout << "NO" << endl;
         }
-    
     }
 
     return 0;

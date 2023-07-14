@@ -1,28 +1,18 @@
 #include <bits/stdc++.h>
 using namespace std;
-void print(stack<char> clr)
-{
-    if (!clr.empty())
-    {
-        int x = clr.top();
-        clr.pop();
-        print(clr);
-        cout << x;
-    }
-}
 int main()
 {
     int n, m;
-    char c;
+    string s;
     stack<char> clr, abc;
-
     cin >> n;
     while (n--)
     {
+
         cin >> m;
-        for (int i = 0; i < m; i++)
+        cin >> s;
+        for (char c : s)
         {
-            cin >> c;
             if (clr.empty())
             {
                 clr.push(c);
@@ -30,19 +20,40 @@ int main()
             else if ((clr.top() == 'R' && c == 'B') || (clr.top() == 'B' && c == 'R'))
             {
                 clr.pop();
-                clr.push('P');
+                if (!clr.empty() && clr.top() == 'P')
+                {
+                    clr.pop();
+                }
+                else
+                {
+                    clr.push('P');
+                }
             }
             else if ((clr.top() == 'R' && c == 'G') || (clr.top() == 'G' && c == 'R'))
             {
                 clr.pop();
-                clr.push('Y');
+                if (!clr.empty() && clr.top() == 'Y')
+                {
+                    clr.pop();
+                }
+                else
+                {
+                    clr.push('Y');
+                }
             }
             else if ((clr.top() == 'B' && c == 'G') || (clr.top() == 'G' && c == 'B'))
             {
                 clr.pop();
-                clr.push('C');
+                if (!clr.empty() && clr.top() == 'C')
+                {
+                    clr.pop();
+                }
+                else
+                {
+                    clr.push('C');
+                }
             }
-            else if ((clr.top() == 'R' && c == 'R') || (clr.top() == 'G' && c == 'G') || (clr.top() == 'B' && c == 'B'))
+            else if (clr.top() == c)
             {
                 clr.pop();
             }
@@ -51,12 +62,16 @@ int main()
                 clr.push(c);
             }
         }
-        // while (!clr.empty())
-        // {
-        //     cout << clr.top();
-        //     clr.pop();
-        // }
-        print(clr);
+        while (!clr.empty())
+        {
+            abc.push(clr.top());
+            clr.pop();
+        }
+        while (!abc.empty())
+        {
+            cout << abc.top();
+            abc.pop();
+        }
         cout << endl;
     }
 

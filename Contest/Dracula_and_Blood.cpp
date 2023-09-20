@@ -12,25 +12,34 @@ int main()
         int a = 0, b = 0;
         bool aa = false, bb = false;
         char p = '0';
+        vector<char> v;
 
         getline(cin, s);
 
         for (char c : s)
         {
-            if (c == '1'&& p == '0')
+            v.push_back(c);
+        }
+        for (int i = v.size() - 1; i >= 0; i--)
+        {
+            char c = v[i];
+            if (c == '0' && p == '0')
+            {
+            }
+            else if (c == '1' && p == '0')
             {
                 if (!aa && !bb)
                 {
                     a++;
                     aa = true;
                 }
-                if (aa)
+                else if (aa)
                 {
                     b++;
                     bb = true;
                     aa = false;
                 }
-                if (bb)
+                else if (bb)
                 {
                     a++;
                     aa = true;
@@ -39,18 +48,18 @@ int main()
             }
             else if (c == '1' && p == '1')
             {
-                if (aa)
+                if (aa && !bb)
                 {
                     a++;
                 }
-                if (bb)
+                else if (bb && !aa)
                 {
                     b++;
                 }
             }
             p = c;
         }
-        cout << b << " " << a << endl;
+        cout << a << endl;
     }
     return 0;
 }
